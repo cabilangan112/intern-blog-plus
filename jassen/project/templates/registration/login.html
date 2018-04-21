@@ -1,0 +1,45 @@
+{% block content %} 
+
+{% load staticfiles %}
+
+ 
+
+
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {% for error in form.non_field_errors %}
+        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+  {% endif %}
+  <div class="card">
+ 
+  <div class="row">
+    <div  class="col-lg-4 col-md-6 col-sm-8 col-12">
+      <h2 class="login">Log in</h2>
+      <div class="form"><form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+<div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div class="password">
+
+  <td>{{ form.password.label_tag }}</td>
+  <td class="pass">{{ form.password }}</td>
+</div>
+
+        <button type="submit" class="button">Log in</button>
+      </form></div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+{% endblock %} 
