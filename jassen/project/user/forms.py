@@ -8,6 +8,8 @@ from .models import MyUser
 
 
 class RegisterForm(forms.ModelForm):
+	cover_photo = forms.ImageField()
+	profile_picture = forms.ImageField()
 	"""A form for creating new users. Includes all the required fields, plus a repeated password."""
 	password1 = forms.CharField(label='Password',min_length=8, widget=forms.PasswordInput, validators=[RegexValidator('^(\w+\d+|\d+\w+)+$', message="Password should be a combination of Alphabets and Numbers")])
 	password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
