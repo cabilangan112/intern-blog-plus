@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/nav.css' %}"> 
+<link rel="stylesheet" href="{% static 'js/nav.js' %}"> 
+ 
+ <div class="topnav" id="myTopnav">
+  <a href='{% url "blog:post" %}' class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <div class="dropdown">
+    <button class="dropbtn">Status
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Publish</a>
+      <a href="#">Draft</a>
+      <a href="#">Hidden</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Category
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Publish</a>
+      <a href="#">Draft</a>
+      <a href="#">Hidden</a>
+    </div>
+  </div>  
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div> 

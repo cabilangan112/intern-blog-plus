@@ -1,11 +1,9 @@
- 
-
 {% block content %}
-
 {% load staticfiles %}
-
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
-
+<link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
+<link rel="stylesheet" href="{% static 'js/nav.js' %}"> 
+	{% include 'snippets/nav.html' %}
 {% if form.errors %}
 	<div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
 	{% for field in form %}
@@ -46,20 +44,20 @@
 								{{form.last_name}}
 								</div>
 								<div class="form-group">
-									<label for="inputName">{{form.MI.label}}</label>
-								{{form.MI}}
+									<label for="inputName">{{form.middle_name.label}}</label>
+								{{form.middle_name}}
 								</div>
 								<div class="form-group">
 									<label for="inputName">{{form.date_of_birth.label}}</label>
 								{{form.date_of_birth}}
 								</div>
 								<div>
-								<label for="inputName">{{form.Age.label}}</label>
-								{{form.Age}}
+								<label for="inputName">{{form.age.label}}</label>
+								{{form.age}}
 								</div>
 								<div>
-								<label for="inputName">{{form.Sex.label}}</label>
-								{{form.Sex }}
+								<label for="inputName">{{form.sex.label}}</label>
+								{{form.sex }}
 					 			</div>
 								<div >
 									<label for="inputEmail3">{{form.email.label}}</label>

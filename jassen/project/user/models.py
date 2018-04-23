@@ -44,7 +44,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(AbstractBaseUser):
+class User(AbstractBaseUser):
  
     email = models.EmailField(
         verbose_name='email address',
@@ -55,11 +55,11 @@ class MyUser(AbstractBaseUser):
     profile_picture =  models.ImageField(upload_to = 'static/media')
     last_name       =  models.CharField(max_length=100)
     first_name      =  models.CharField(max_length=100)
-    MI              =   models.CharField(max_length=200)
+    middle_name              =   models.CharField(max_length=200)
 
-    Sex             =   models.CharField(max_length=6, choices=GENDER, blank=True, default=True)
+    sex             =   models.CharField(max_length=6, choices=GENDER, blank=True, default=True)
     date_of_birth   =   models.DateField()
-    Age             =   models.CharField(max_length=20)
+    age             =   models.CharField(max_length=20)
 
     objects         = MyUserManager()
     is_active       = models.BooleanField(default=True)

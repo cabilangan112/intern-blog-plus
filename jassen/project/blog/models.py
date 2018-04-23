@@ -30,10 +30,9 @@ class Post(models.Model):
     Comment = models.ManyToManyField("comment",related_name="Comment")
     
     def __str__(self):
-        return '{}'.format(self.user)
+        return '{}'.format(self.user.first_name, self.user.last_name)
 
 class Comment(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
     vote = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
 

@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
     path('accounts/',include('django.contrib.auth.urls')),
-    url(r'^register/$', RegisterView.as_view(), name='register'),
+    path('', RegisterView.as_view(), name='register'),
 
 ]
 if settings.DEBUG:

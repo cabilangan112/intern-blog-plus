@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'css/Post_list.css' %}" />
+<title>Post Detail</title>
+ {% block content %} 
+  {% for obj in post %}
+    <div class="card">
+      <h1 class="title">{{obj.blog.heading}}</h1>
+      <small class="sub_heading">{{obj.blog.sub_heading}}</small> 
+      <h3>{{obj.title}}</h3>
+      <p><strong>Posted By:</strong> {{obj.user.first_name}} {{obj.user.last_name}}</p>
+      <small> Posted on: {{ obj.date|timesince }} ago</small></p>
+      <img src="{{obj.banner_photo.url}}">
+      <p class="p">{{obj.body}}</p>
+      <small>Date Modified: {{obj.date_modified }} </small>
+      <div class="tags">
+      {% for tag in obj.tags.all %}
+          {% if not forloop.last %}
+        {{tag}},</small></a>
+          {% else  %}
+          {{tag}}</small></a>
+          {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endblock %}
+</html> 

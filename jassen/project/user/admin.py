@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import MyUser
+from .models import User
 
 class UserAdmin(BaseUserAdmin):
 
@@ -11,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
 
-        ('information', {'fields': ('cover_photo','profile_picture','last_name','first_name','MI','Sex','Age')}),
+        ('information', {'fields': ('cover_photo','profile_picture','last_name','first_name','middle_name','sex','age')}),
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('date_of_birth',)}),
         ('Permissions', {'fields': ('is_admin','is_faculty','is_student')}),
@@ -30,4 +30,4 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 # Now register the new UserAdmin...
-admin.site.register(MyUser, UserAdmin)
+admin.site.register(User, UserAdmin)

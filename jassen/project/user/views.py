@@ -7,9 +7,9 @@ from django.views.generic import (ListView,DetailView,UpdateView,CreateView)
 # Create your views here.
 
 class RegisterView(CreateView):
-	form_class = RegisterForm
-	template_name = 'registration/register.html'
-	success_url = '/login'
+    form_class = RegisterForm
+    template_name = 'registration/register.html'
+    success_url = '/login'
 
-	def dispatch(self, *args, **kwargs):
-		return super(RegisterView, self).dispatch(*args, **kwargs)
+    def dispatch(self, *args, **kwargs):
+        return super(RegisterView, self).dispatch(*args, **kwargs)
