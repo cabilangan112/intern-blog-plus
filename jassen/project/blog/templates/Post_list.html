@@ -3,9 +3,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
 <link rel="stylesheet" href="{% static 'js/nav.js' %}"> 
-<link rel="stylesheet" type="text/css" href="{% static 'css/Post_list.css' %}" /> {% include 'snippets/nav.html' %}
-<title>Post List</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/Post_list.css' %}" /> 
  
+<body>
+{% include 'snippets/nav.html' %}
+<title>Post List</title>
+
   {% for obj in post %}
     <div class="card">
       <h1 class="title">{{obj.blog.heading}}</h1>
@@ -28,4 +31,4 @@
       </div> 
     {% endfor %}
   {% endblock %}
- 
+</body> 

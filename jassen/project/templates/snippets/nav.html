@@ -30,7 +30,16 @@
       <a href="#">Draft</a>
       <a href="#">Hidden</a>
     </div>
-  </div>  
+  </div> 
   <a href="#about">About</a>
+  <div>{% if user.is_authenticated %}
+    {% if request.user.is_active %}
+      <a href="user" style="margin-left: 530px;" >{{ user.email }}</a>
+{% endif %}
+  {% else %}  
+  <p href="user" style="margin-left: 1289px;">Sign in</p>
+{% endif %}
+ 
+</div>  
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div> 
