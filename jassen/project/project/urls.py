@@ -22,7 +22,7 @@ from user.views import RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls', namespace='blog')),
+    path('posts/', include('blog.urls', namespace='blog')),
     path('accounts/',include('django.contrib.auth.urls')),
     path('', RegisterView.as_view(), name='register'),
 

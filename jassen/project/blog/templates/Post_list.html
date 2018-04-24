@@ -27,8 +27,10 @@
           {{tag}}</small></a>
           {% endif %}
       {% endfor %}
-      <p class="li" > <a href='{% url "blog:detail" obj.id %}'   role="button" >Detail</a> </p> 
-      </div> 
+      <p class="li" > <a href='{% url "blog:detail" obj.title %}'   role="button" >Detail</a> </p> 
+      </div>
+      </div>   
     {% endfor %}
+  
   {% endblock %}
 </body> 

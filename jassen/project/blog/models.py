@@ -18,7 +18,7 @@ class Blog(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    sub_Title = models.CharField(max_length=150)
+    sub_title = models.CharField(max_length=150)
     banner_photo = models.ImageField(upload_to = 'static/media')
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
@@ -33,11 +33,11 @@ class Post(models.Model):
         return '{}'.format(self.user.first_name, self.user.last_name)
 
 class Comment(models.Model):
-    vote = models.BooleanField(default=True)
+    text = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}'.format(self.user)
+        return '{}'.format(self.text)
 
 class Category(models.Model):
     title = models.CharField(max_length=150)

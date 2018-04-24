@@ -34,10 +34,12 @@
   <a href="#about">About</a>
   <div>{% if user.is_authenticated %}
     {% if request.user.is_active %}
-      <a href="user" style="margin-left: 530px;" >{{ user.email }}</a>
+ 
+      <a href="" class="user" style="margin-left: 320px;" >{{ user.email }}</a>
+            <a href='{% url "logout" %}' style="margin-left: 30px;" ><span>Logout<span></a>
 {% endif %}
   {% else %}  
-  <p href="user" style="margin-left: 1289px;">Sign in</p>
+    <a href="/accounts/login" role="button" style="margin-left: 700px;" >Sign in</a>
 {% endif %}
  
 </div>  

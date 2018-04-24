@@ -25,7 +25,7 @@ SECRET_KEY = 's4g-awdjk33kelmktuml4@-$yq%2ji@pvj=n9j_j7k=t@7kqkt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -126,8 +126,9 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/blog/'
+LOGIN_REDIRECT_URL = '/posts/'
 
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 AUTH_USER_MODEL = 'user.User'
 
 STATICFILES_DIRS = (
