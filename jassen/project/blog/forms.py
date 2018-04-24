@@ -1,7 +1,5 @@
 from django import forms
 from .models import Post,Category,Tag,Blog
- 
-
 
 class PostForm(forms.ModelForm):
     class Meta:
