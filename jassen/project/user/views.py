@@ -9,7 +9,7 @@ from django.views.generic import (ListView,DetailView,UpdateView,CreateView)
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'registration/register.html'
-    success_url = '/login'
+    success_url = '/accounts/login/'
 
     def dispatch(self, *args, **kwargs):
         return super(RegisterView, self).dispatch(*args, **kwargs)

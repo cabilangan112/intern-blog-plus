@@ -27,12 +27,12 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     tags = models.ManyToManyField("Tag",related_name="tags")
     status = models.CharField(max_length=9, choices=POST_STATUS, blank=True, default=True)
-    Comment = models.ManyToManyField("comment",related_name="Comment")
-    
+
     def __str__(self):
         return '{}'.format(self.user.first_name, self.user.last_name)
 
 class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True) 
     text = models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now_add=True)
 

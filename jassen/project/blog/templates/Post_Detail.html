@@ -6,15 +6,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/Post_list.css' %}" />
 <title>Post Detail</title>
  {% block content %} 
-  {% for obj in post %}
+ 
     <div class="card">
-      <h1 class="title">{{obj.blog.heading}}</h1>
-      <small class="sub_heading">{{obj.blog.sub_heading}}</small> 
-      <h3>{{obj.title}}</h3>
-      <p><strong>Posted By:</strong> {{obj.user.first_name}} {{obj.user.last_name}}</p>
-      <small> Posted on: {{ obj.date|timesince }} ago</small></p>
-      <img src="{{obj.banner_photo.url}}">
-      <p class="p">{{obj.body}}</p>
+      <h1 class="title">{{post.blog.heading}}</h1>
+      <small class="sub_heading">{{post.blog.sub_heading}}</small> 
+      <h3>{{post.title}}</h3>
+      <p><strong>Posted By:</strong> {{post.user.first_name}} {{post.user.last_name}}</p>
+      <small> Posted on: {{ post.date|timesince }} ago</small></p>
+      <img src="{{post.banner_photo.url}}">
+      <p class="p">{{post.body}}</p>
       <small>Date Modified: {{obj.date_modified }} </small>
       <div class="tags">
       {% for tag in obj.tags.all %}
@@ -24,6 +24,15 @@
           {{tag}}</small></a>
           {% endif %}
       {% endfor %}
-    {% endfor %}
+   <p>commments :</p>
+  {% for comment in comment %}
+    <p>{{ comment.text }}</p>
+    <small>{{ comment.date_created  }}</small>
+    <p>-------------------------------</p>
+  {% endfor %}
+
+  <a href="{% url 'blog:post-comment' %}">comment</a>
+
+
   {% endblock %}
 </html> 
