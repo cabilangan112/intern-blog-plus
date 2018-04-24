@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Category
+from .models import Post,Category,Tag,Blog
  
 
 
@@ -11,8 +11,6 @@ class PostForm(forms.ModelForm):
         'sub_title',
         'banner_photo',
         'body',
-        'date',
-        'date_modified',
         'blog',
         'category',
         'tags',

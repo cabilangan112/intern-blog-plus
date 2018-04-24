@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import get_user_model
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from .models import Post,Category,Tag,Blog,Comment
-from user.models import User
+from .forms import PostForm
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 
 
@@ -17,6 +17,7 @@ class PostView(LoginRequiredMixin,View):
         post = Post.objects.filter(status__contains='publish').order_by('-date')
         context = {'post':post,}
         return render(request, "Post_list.html", context)
+
 
 class PostDetailView(View):
     def get(self, request,  title,*args, **kwargs):
@@ -30,10 +31,18 @@ class PostDetailView(View):
             raise Http404
         return get_object_or_404(Post, title__iexact=title)
 
-class UserDetail(View):
-    def get(self, last_name, request, *args, **kwargs): 
-        query = self.request.GET.get('q')
-        user = User.objects.filter(last_name=last_name)
-        context = {'user':user,}
-        return render(request, "user_detail.html", context)
-
+class Post(View):
+    def get(request):
+        if request.method == 'POST':
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.save()
+                return redirect('/')
+        else:
+            form = PostForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'post.html', context)
+  
