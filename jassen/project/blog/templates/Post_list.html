@@ -12,7 +12,7 @@
       <h1 class="title">{{obj.blog.heading}}</h1>
       <small class="sub_heading">{{obj.blog.sub_heading}}</small> 
       <h3>{{obj.title}}</h3>
-      <p><strong>Posted By:</strong> {{obj.author}}</p>
+      <p><strong>Posted By:</strong> {{obj.user.first_name}} {{obj.user.last_name}}</p>
       <small> Posted on: {{ obj.date|timesince }} ago</small></p>
       <img src="{{obj.banner_photo.url}}">
       <p class="p">{{obj.body}}</p>
@@ -25,7 +25,7 @@
           {{tag}}</small></a>
           {% endif %}
       {% endfor %}
-      <p class="li" > <a href='{% url "blog:detail" obj.id%}'   role="button" >Detail</a> </p> 
+      <p class="li" > <a href='{% url "blog:detail" obj.title%}'   role="button" >Detail</a> </p> 
       </div>
       </div>   
     {% endfor %}

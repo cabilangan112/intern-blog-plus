@@ -19,12 +19,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from user.views import RegisterView
+from blog.views import UserDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('blog.urls', namespace='blog')),
     path('accounts/',include('django.contrib.auth.urls')),
     path('', RegisterView.as_view(), name='register'),
+    path('<int:pk>',UserDetail.as_view(), name='user'),    
 
 ]
 if settings.DEBUG:

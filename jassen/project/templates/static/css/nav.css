@@ -168,3 +168,8 @@ article {
   margin: 0 auto;
   padding: 10px;
 }
+
+.out
+{
+  float: right;
+}

@@ -3,10 +3,12 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
+<link rel="stylesheet" href="{% static 'js/nav.js' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/Post_list.css' %}" />
+{% include 'snippets/nav.html' %}
 <title>Post Detail</title>
  {% block content %} 
- 
     <div class="card">
       <h1 class="title">{{post.blog.heading}}</h1>
       <small class="sub_heading">{{post.blog.sub_heading}}</small> 
@@ -24,15 +26,18 @@
           {{tag}}</small></a>
           {% endif %}
       {% endfor %}
+    <div class="card">
    <p>commments :</p>
   {% for comment in comment %}
+    <p>{{comment.author}}</p>
     <p>{{ comment.text }}</p>
     <small>{{ comment.date_created  }}</small>
     <p>-------------------------------</p>
+
   {% endfor %}
+</div>
 
   <a href="{% url 'blog:post-comment' %}">comment</a>
-
-
-  {% endblock %}
+</div>
+{% endblock %}
 </html> 

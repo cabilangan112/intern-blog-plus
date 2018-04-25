@@ -29,11 +29,12 @@ class Post(models.Model):
     status = models.CharField(max_length=9, choices=POST_STATUS, blank=True, default=True)
 
     def __str__(self):
-        return '{}'.format(self.user.first_name, self.user.last_name)
+        return '{}'.format(self.title)
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True) 
-    text = models.CharField(max_length=150)
+    author = models.CharField(max_length=200)
+    text = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

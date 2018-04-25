@@ -1,14 +1,11 @@
 from django.shortcuts import render
-from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import TemplateView
 from django.contrib.auth import login
 from django.shortcuts import render, Http404, get_object_or_404, redirect
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import get_user_model
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from .models import Post,Category,Tag,Blog,Comment
 from .forms import PostForm,CommentForm
+from user.models import User
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 
 
@@ -20,13 +17,13 @@ class PostView(LoginRequiredMixin,View):
 
 
 class PostDetailView(View):
-    def get(self, request, post_id, *args, **kwargs):
-        post = get_object_or_404(Post, pk=post_id, status='published')
+    def get(self, request, title, *args, **kwargs):
+        post = get_object_or_404(Post, title=title, status='published')
         comment = post.comment_set.all()
         context = {'post':post,'comment': comment,}
         return render(request, "Post_Detail.html", context)
 
-def comment_new(request):
+def comment(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -62,3 +59,11 @@ class CreatePostView(View):
             return redirect('index')            
         context = {'form' : form,'post' : post,}        
         return render(request, "post.html", context)
+
+
+class UserDetail(View):
+    def get(self, request,  pk, *args, **kwargs): 
+        users = User.objects.get(pk=pk)
+        post = Post.objects.filter(user=pk)
+        context = {'users':users,}
+        return render(request, "user_detail.html", context)

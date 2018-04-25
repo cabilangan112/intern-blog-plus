@@ -14,7 +14,6 @@ class PostForm(forms.ModelForm):
         'tags',
         'status',)
 
-
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
@@ -38,5 +37,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = (
-        'text',)
+        'post',
+        'text',
+        'author')
     
