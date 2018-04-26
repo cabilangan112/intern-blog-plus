@@ -32,7 +32,7 @@
 
    <p>commments :</p>
     {% for comment in comment %}
-    <p>{{comment.author}} :  {{ comment.text }}</p>
+    <p>{{comment.author.first_name}} {{comment.author.last_name}}:  {{ comment.text }}</p>
     <small>{{ comment.date_created  }}</small>
     <hr>
    {% endfor %}

@@ -95,7 +95,7 @@ def comment(request,pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post= post
-            comment.author = request.user.last_name,request.user.first_name
+            comment.author = request.user
             comment.save()
             return redirect('/posts')
     else:
