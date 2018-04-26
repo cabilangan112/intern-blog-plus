@@ -1,13 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
 <link rel="stylesheet" href="{% static 'js/nav.js' %}"> 
- <div class="topnav" id="myTopnav">
+<div id="navbar">
+<div class="topnav" id="myTopnav">
   <a href='{% url "blog:post" %}' class="active">Home</a>
+
   <div class="dropdown">
     <button class="dropbtn">Status
       <i class="fa fa-caret-down"></i>
@@ -31,12 +32,19 @@
   <div>{% if user.is_authenticated %}
      {% if request.user.is_active %}
       <a href='{% url "user" user.id %}' class="user">{{ user.email}}</a>
-            <a href='{% url "logout" %}'><span>Logout<span></a>
-{% endif %}
-  {% else %}  
-    <a class="out" href='{% url "login" %}'>Sign in</a>
-{% endif %}
+      <a href='{% url "logout" %}'><span>Logout<span></a>
+      {% endif %}
+        {% else %}  
+          <a class="out" href='{% url "login" %}'>Sign in</a>
+      {% endif %}
+  </div>
  
-</div>  
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-</div> 
+ 
+  </div>
+  </div>
+  </div>
+ 
+</head>
+</html>
+
+ <script src="{% static 'js/nav.js' %}"></script>

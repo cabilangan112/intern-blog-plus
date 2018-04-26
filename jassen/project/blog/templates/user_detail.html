@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
+<link rel="stylesheet" href="{% static 'js/nav.js' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/user.css' %}" />
+{% include 'snippets/nav.html' %}
+<body>
+  <div class="card">
+  	<div>
+    <img class="cover" src="{{user.cover_photo.url}}">
+    <img class="profile" src="{{user.profile_picture.url}}"></div>
+  </div>
+
+
+
+  </body>
+  </html>

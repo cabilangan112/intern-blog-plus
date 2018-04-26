@@ -104,7 +104,7 @@ def comment(request,pk):
     context = {
         'form': form,
     }
-    return render(request, 'post.html', context)
+    return render(request, 'comment.html', context)
 
 
     def get_object(self):
@@ -139,8 +139,8 @@ class UserDetail(View):
 
 
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def post_edit(request, title):
+    post = get_object_or_404(Post,title=title)
     if request.method == "POST":
         form = EditForm(request.POST, instance=post)
         if form.is_valid():
@@ -150,4 +150,4 @@ def post_edit(request, pk):
             return redirect('/posts', pk=post.pk)
     else:
         form = EditForm(instance=post)
-    return render(request, 'post.html', {'form': form})
+    return render(request, 'edit.html', {'form': form})

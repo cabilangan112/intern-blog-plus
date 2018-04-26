@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/navs.css' %}"> 
 <link rel="stylesheet" href="{% static 'js/nav.js' %}"> 
 	{% include 'snippets/nav.html' %}
+<body>
 {% if form.errors %}
 	<div class="error_message col-md-12 offset-md-0 alert alert-danger" role="alert">
 	{% for field in form %}
@@ -44,4 +45,5 @@
 </div>
 <!--/container-->
 </div>
+</body>
 {% endblock %}

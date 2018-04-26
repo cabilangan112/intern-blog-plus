@@ -15,6 +15,7 @@
 margin-left: 20px
 }
 body{
+  padding-top: 60px;
   padding:0;
   height:100%;
   width:100%;
@@ -34,4 +35,7 @@ text-align: center;
 } 
 .submit{
 margin:auto;
+}
+.sticky + .h1 {
+  padding-top: 60px;
 }
