@@ -34,17 +34,12 @@
       <a href='{% url "user" user.id %}' class="user">{{ user.email}}</a>
       <a href='{% url "logout" %}'><span>Logout<span></a>
       {% endif %}
-        {% else %}  
+      {% else %}  
           <a class="out" href='{% url "login" %}'>Sign in</a>
       {% endif %}
   </div>
- 
- 
-  </div>
-  </div>
-  </div>
- 
+ </div>
+</div>
 </head>
 </html>
-
  <script src="{% static 'js/nav.js' %}"></script>
