@@ -23,21 +23,20 @@
           {% if not forloop.last %}
         {{tag}},</small></a>
           {% else  %}
-          {{tag}}</small></a>
+        {{tag}}</small></a>
           {% endif %}
       {% endfor %}
-    <div class="card">
+      </div> 
+    </div>
+   <div class="bg" >
+
    <p>commments :</p>
-  {% for comment in comment %}
-    <p>{{comment.author}}</p>
-    <p>{{ comment.text }}</p>
+    {% for comment in comment %}
+    <p>{{comment.author}} :  {{ comment.text }}</p>
     <small>{{ comment.date_created  }}</small>
-    <p>-------------------------------</p>
-
-  {% endfor %}
-</div>
-
-  <a href="{% url 'blog:post-comment' %}">comment</a>
+    <hr>
+   {% endfor %}
+    <a href="{% url 'blog:post-comment' post.id%}">Add Comment</a>
 </div>
 {% endblock %}
 </html> 

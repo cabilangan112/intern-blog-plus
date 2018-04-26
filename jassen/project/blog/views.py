@@ -4,7 +4,7 @@ from django.shortcuts import render, Http404, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from .models import Post,Category,Tag,Blog,Comment
-from .forms import PostForm,CommentForm
+from .forms import PostForm,CommentForm,TagForm,CategoryForm,BlogForm
 from user.models import User
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 
@@ -15,21 +15,89 @@ class PostView(LoginRequiredMixin,View):
         context = {'post':post,}
         return render(request, "Post_list.html", context)
 
+def Draft(LoginRequiredMixin,request):
+    post = Post.objects.filter(status__contains='draft')
+    context = {'post': post,}
+    return render(request, 'Post_list.html', context)
 
-class PostDetailView(View):
+def Hidden(LoginRequiredMixin,request):
+
+    post = Post.objects.filter(status__contains='Hidden')
+    context = {'post': post,}
+    return render(request, 'Post_list.html', context)
+
+
+def PostCreate(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('/posts')
+    else:
+        form = PostForm()
+    context = {'form': form,}
+    return render(request, 'post.html', context)
+
+def TagCreate(request):
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            tag = form.save(commit=False)
+            tag.save()
+            return redirect('/posts/add/post')
+    else:
+        form = TagForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'post.html', context)
+
+def BlogCreate(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.save()
+            return redirect('/posts/add/post')
+    else:
+        form = BlogForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'post.html', context)
+
+def CategoryCreate(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category= form.save(commit=False)
+            category.save()
+            return redirect('/posts/add/post')
+    else:
+        form = CategoryForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'post.html', context)
+
+class PostDetailView(LoginRequiredMixin,View):
     def get(self, request, title, *args, **kwargs):
         post = get_object_or_404(Post, title=title, status='published')
         comment = post.comment_set.all()
         context = {'post':post,'comment': comment,}
         return render(request, "Post_Detail.html", context)
 
-def comment(request):
+def comment(request,pk):
+    post= get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.post= post
+            comment.author = request.user.last_name,request.user.first_name
             comment.save()
-            return redirect('/')
+            return redirect('/posts')
     else:
         form = CommentForm()
     context = {
