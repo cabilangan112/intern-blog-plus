@@ -43,3 +43,13 @@ class CommentForm(forms.ModelForm):
         'text',
         'author',)
     
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('user',)
+        fields = ('user',
+        'title',
+        'sub_title',
+        'banner_photo',
+        'body',
+        'status',)

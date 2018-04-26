@@ -12,7 +12,7 @@
     <div class="card">
       <h1 class="title">{{post.blog.heading}}</h1>
       <small class="sub_heading">{{post.blog.sub_heading}}</small> 
-      <h3>{{post.title}}</h3>
+      <h3><a href="{% url 'blog:post-edit' post.id%}">{{post.title}}</h3></a>
       <p><strong>Posted By:</strong> {{post.user.first_name}} {{post.user.last_name}}</p>
       <small> Posted on: {{ post.date|timesince }} ago</small></p>
       <img src="{{post.banner_photo.url}}">

@@ -4,25 +4,25 @@ from django.shortcuts import render, Http404, get_object_or_404, redirect
 from django.contrib.auth import get_user_model
 from django.views.generic import (ListView,DetailView,CreateView,UpdateView, View)
 from .models import Post,Category,Tag,Blog,Comment
-from .forms import PostForm,CommentForm,TagForm,CategoryForm,BlogForm
+from .forms import PostForm,CommentForm,TagForm,CategoryForm,BlogForm,EditForm
 from user.models import User
 from django.contrib.auth.mixins import (LoginRequiredMixin,PermissionRequiredMixin)
 
 
 class PostView(LoginRequiredMixin,View):
     def get(self, request, *args, **kwargs):
-        post = Post.objects.filter(status__contains='publish').order_by('-date')
+        post = Post.objects.filter(status='published').order_by('-date')
         context = {'post':post,}
         return render(request, "Post_list.html", context)
 
 def Draft(LoginRequiredMixin,request):
-    post = Post.objects.filter(status__contains='draft')
+    post = Post.objects.filter(status='draft')
     context = {'post': post,}
     return render(request, 'Post_list.html', context)
 
 def Hidden(LoginRequiredMixin,request):
 
-    post = Post.objects.filter(status__contains='Hidden')
+    post = Post.objects.filter(status='hidden')
     context = {'post': post,}
     return render(request, 'Post_list.html', context)
 
@@ -136,3 +136,18 @@ class UserDetail(View):
         post = Post.objects.filter(user=pk)
         context = {'users':users,}
         return render(request, "user_detail.html", context)
+
+
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = EditForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('/posts', pk=post.pk)
+    else:
+        form = EditForm(instance=post)
+    return render(request, 'post.html', {'form': form})

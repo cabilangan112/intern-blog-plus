@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.PostView.as_view(), name='post'),
     path('detail/<title>/', views.PostDetailView.as_view(), name='detail'),
     path('<int:pk>/', views.comment, name='post-comment'),
+    path('update/<int:pk>/', views.post_edit, name='post-edit'),    
     path('draft/', views.Draft, name='draft'),
     path('hidden/', views.Hidden, name='hidden'),
     path('add/post/', views.PostCreate, name='add-post'),
