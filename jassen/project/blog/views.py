@@ -137,16 +137,15 @@ class UserDetail(View):
         context = {'users':users,}
         return render(request, "user_detail.html", context)
 
-
-
-def post_edit(request, title):
-    post = get_object_or_404(Post,title=title)
+def post_edit(request,title):
+    post = get_object_or_404(Post,title=title,user=request.user)
     if request.method == "POST":
         form = EditForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
+        if posts.user == request.user: 
+            if form.is_valid():           
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
             return redirect('/posts', pk=post.pk)
     else:
         form = EditForm(instance=post)
